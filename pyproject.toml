@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "orangutan"
+dynamic = ["version"]
+description = "Automatic API Inspection and Adaptation System"
+readme = "README.md"
+license = {text = "MIT License"}
+authors = [
+    { name = "Joseph M Courtney", email = "joseph.m.courtney@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "aiohttp",
+    "openapi-generator-cli",
+    "pystache",
+    "pydantic",
+    "tenacity",
+    "pytest",
+    "pytest-httpserver",
+    "vcrpy",
+    "sqlite3",
+    "celery"
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest-cov",
+]
+
+[tool.hatch.version]
+path = "src/orangutan/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+    "src/**"
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+    "src/**"
+]
+
+[tool.ruff]
+extend = ["~/.config/ruff/ruff.toml"]
+target-version = "py312"
+select = ["E", "F", "W", "C", "N", "Q"]
+ignore = []
+exclude = ["tests/"]
+
+[tool.mypy]
+config-file = "~/.config/mypy/config/mypy.ini"
+python_version = "3.12"
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.coverage.run]
+branch = true
+source = ["src/orangutan"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
