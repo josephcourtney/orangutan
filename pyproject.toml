@@ -29,7 +29,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["ruff", "mypy", "pytest-cov", "commitizen", "pre-commit"]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest-cov",
+    "commitizen",
+    "pre-commit",
+    "types-requests",
+    "hatch",
+    "twine",
+]
 
 [tool.hatch.build.targets.sdist]
 packages = ["src/orangutan"]
@@ -45,10 +54,12 @@ path = "./scripts/pre_build.py"
 [tool.ruff]
 extend = "~/.config/ruff/ruff.toml"
 target-version = "py312"
-exclude = ["tests/"]
 
 [tool.ruff.lint]
 ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
 
 [tool.mypy]
 python_version = "3.12"
