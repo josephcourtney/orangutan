@@ -54,16 +54,17 @@ include = [
     "pyproject.toml",
     "src/**"
 ]
+[tool.hatch.build.hooks.custom_hook]
+path = "./scripts/pre_build.py"
 
 [tool.ruff]
-extend = ["~/.config/ruff/ruff.toml"]
+extend = "~/.config/ruff/ruff.toml"
 target-version = "py312"
 select = ["E", "F", "W", "C", "N", "Q"]
 ignore = []
 exclude = ["tests/"]
 
 [tool.mypy]
-config-file = "~/.config/mypy/config/mypy.ini"
 python_version = "3.12"
 check_untyped_defs = true
 disallow_untyped_defs = true
