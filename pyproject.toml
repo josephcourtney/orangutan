@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "orangutan"
-version = "0.0.2"
+version = "0.0.3"
 description = "Automatic API Inspection and Adaptation System"
 readme = "README.md"
 license = { text = "MIT License" }
